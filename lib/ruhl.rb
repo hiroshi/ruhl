@@ -18,3 +18,12 @@ module Ruhl
   self.use_instance_variables = true
   self.log_instance_variable_warning = true
 end
+
+#if defined?(Rails::Railtie)
+class RuhlRailtie < Rails::Railtie
+  config.generators.template_engine = :ruhl
+
+  config.before_initialize do
+    require "ruhl/rails3"
+  end
+end
